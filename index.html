@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Jar Decompiler</title>
+
+<style>
+
+body{
+background:#0f0f0f;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+#files{
+margin-top:30px;
+background:#1e1e1e;
+padding:20px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+border-radius:10px;
+text-align:left;
+}
+
+a{
+color:#4da6ff;
+display:block;
+margin:3px;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Jar Decompiler</h1>
+
+<form id="uploadForm">
+<input type="file" name="jar" required>
+<button>Decompile</button>
+</form>
+
+<div id="files"></div>
+
+<script>
+
+const form = document.getElementById("uploadForm")
+
+form.addEventListener("submit", async e => {
+
+e.preventDefault()
+
+let data = new FormData(form)
+
+let res = await fetch("/upload",{
+method:"POST",
+body:data
+})
+
+let files = await res.json()
+
+let html = ""
+
+files.forEach(f=>{
+html += `<a href="/files/${f}" target="_blank">${f}</a>`
+})
+
+document.getElementById("files").innerHTML = html
+
+})
+
+</script>
+
+</body>
+
+</html>
