@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs", "jdk17"]
+nixPkgs = ["nodejs_18", "jdk17"]
 
 [phases.install]
 cmds = ["npm install"]
